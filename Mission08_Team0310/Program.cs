@@ -11,6 +11,7 @@ builder.Services.AddDbContext<Mission08Context>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings:Mission08Connection"]);
 });
 
+builder.Services.AddScoped<IToDoListRepository, EFToDoListRepository>();
 
 var app = builder.Build();
 

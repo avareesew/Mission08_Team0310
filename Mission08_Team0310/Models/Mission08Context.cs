@@ -17,7 +17,7 @@ public partial class Mission08Context : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
-    public virtual DbSet<Task> Tasks { get; set; }
+    public virtual DbSet<ToDoItem> ToDoItems { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -29,21 +29,21 @@ public partial class Mission08Context : DbContext
         {
             entity.ToTable("Category");
 
-            entity.HasIndex(e => e.CategoryId, "IX_Category_CategoryID").IsUnique();
+            entity.HasIndex(e => e.CategoryID, "IX_Category_CategoryID").IsUnique();
 
-            entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+            entity.Property(e => e.CategoryID).HasColumnName("CategoryID");
         });
 
-        modelBuilder.Entity<Task>(entity =>
+        modelBuilder.Entity<ToDoItem>(entity =>
         {
-            entity.ToTable("Task");
+            entity.ToTable("ToDoItem");
 
             entity.HasIndex(e => e.TaskId, "IX_Task_TaskID").IsUnique();
 
             entity.Property(e => e.TaskId).HasColumnName("TaskID");
-            entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+            entity.Property(e => e.CategoryID).HasColumnName("CategoryID");
 
-            entity.HasOne(d => d.Category).WithMany(p => p.Tasks).HasForeignKey(d => d.CategoryId);
+            entity.HasOne(d => d.Category).WithMany().HasForeignKey(d => d.CategoryID);
         });
 
         OnModelCreatingPartial(modelBuilder);

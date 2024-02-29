@@ -7,7 +7,7 @@ namespace Mission08_Team0310.Models;
 public class Category
 {
     [Key]
-    public required int CategoryId { get; set; }
+    public required int CategoryID { get; set; }
 
     public required string CategoryName { get; set; }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission08_Team0310.Models;
 
-public class Task
+public class ToDoItem
 {
     [Key]
     public required int TaskId { get; set; }
@@ -18,7 +18,7 @@ public class Task
 
     public int? Completed { get; set; }
 
-    [ForeignKey("CategoryId")]
-    public int? CategoryId { get; set; }
+    [ForeignKey("CategoryID")]
+    public int? CategoryID { get; set; }
     public Category? Category { get; set; }
 }
