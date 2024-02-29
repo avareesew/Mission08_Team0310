@@ -6,16 +6,18 @@ namespace Mission08_Team0310.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IToDoListRepository _repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IToDoListRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
+
 
         public IActionResult Index()
         {
-            return View();
+            var firstToDoItem = _repo.ToDoItems.FirstOrDefault(x => x.Quadrant == 1);
+            return View(firstToDoItem);
         }
 
         public IActionResult Privacy()
@@ -23,10 +25,5 @@ namespace Mission08_Team0310.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
