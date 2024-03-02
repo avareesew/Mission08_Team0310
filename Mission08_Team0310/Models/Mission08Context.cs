@@ -34,6 +34,15 @@ public partial class Mission08Context : DbContext
             entity.Property(e => e.CategoryID).HasColumnName("CategoryID");
         });
 
+        modelBuilder.Entity<Category>().HasData(
+
+            new Category { CategoryID = 1, CategoryName = "Home" },
+            new Category { CategoryID = 2, CategoryName = "School" },
+            new Category { CategoryID = 3, CategoryName = "Work" },
+            new Category { CategoryID = 4, CategoryName = "Church" }
+            );
+
+
         modelBuilder.Entity<ToDoItem>(entity =>
         {
             entity.ToTable("ToDoItem");
