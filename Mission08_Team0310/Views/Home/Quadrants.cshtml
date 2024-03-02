@@ -1,0 +1,138 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<ToDoItem>
+
+@{
+    // Group tasks by quadrant number
+    var quadrants = Model.GroupBy(t => t.Quadrant);
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Quadrant 1 (Important and Urgent)</h2>
+                <table class="table table-bordered">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Task Name</td>
+                            <td>Due Date</td>
+                            <td>Completed</td>
+                            <td>Category</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in quadrants.FirstOrDefault(q => q.Key == 1))
+                        {
+                            <tr>
+                                <td>@task.TaskName</td>
+                                <td>@task.DueDate</td>
+                                <td>@task.Completed</td>
+                                <td>@task.CategoryID</td>
+                                <td>
+                                    <a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                                    <a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Quadrant 2 (Important and Not Urgent)</h2>
+                <table class="table table-bordered">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Task Name</td>
+                            <td>Due Date</td>
+                            <td>Completed</td>
+                            <td>Category</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in quadrants.FirstOrDefault(q => q.Key == 2))
+                        {
+                            <tr>
+                                <td>@task.TaskName</td>
+                                <td>@task.DueDate</td>
+                                <td>@task.Completed</td>
+                                <td>@task.CategoryID</td>
+                                <td>
+                                    <a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                                    <a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Quadrant 3 (Not Important and Urgent)</h2>
+                <table class="table table-bordered">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Task Name</td>
+                            <td>Due Date</td>
+                            <td>Completed</td>
+                            <td>Category</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in quadrants.FirstOrDefault(q => q.Key == 3))
+                        {
+                            <tr>
+                                <td>@task.TaskName</td>
+                                <td>@task.DueDate</td>
+                                <td>@task.Completed</td>
+                                <td>@task.CategoryID</td>
+                                <td>
+                                    <a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                                    <a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Quadrant 4 (Not Important and Not Urgent)</h2>
+                <table class="table table-bordered">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Task Name</td>
+                            <td>Due Date</td>
+                            <td>Completed</td>
+                            <td>Category</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in quadrants.FirstOrDefault(q => q.Key == 4))
+                        {
+                            <tr>
+                                <td>@task.TaskName</td>
+                                <td>@task.DueDate</td>
+                                <td>@task.Completed</td>
+                                <td>@task.CategoryID</td>
+                                <td>
+                                    <a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                                    <a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
