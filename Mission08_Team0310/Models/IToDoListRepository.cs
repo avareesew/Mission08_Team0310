@@ -3,6 +3,5 @@
     public interface IToDoListRepository
     {
         List<ToDoItem> ToDoItems { get; }
-
     }
 }
