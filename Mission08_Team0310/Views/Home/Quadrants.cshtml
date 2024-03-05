@@ -10,6 +10,143 @@
     var quadrants = Model.GroupBy(t => t.Quadrant);
 }
 
+<div class="container ">
+    <div class="row border">
+        <div class="col-12 ">
+            <h2 class="">Stephen Covey's Time Management Matrix</h2>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col-2 border-end ">
+        </div>
+        <div class="col-5 border-end ">
+            <h3>URGENT</h3>
+        </div>
+        <div class="col-5 border-end ">
+            <h3>NOT URGENT</h3>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col-2 border-end ">
+            <h3 style="writing-mode: vertical-rl; text-orientation: upright;">IMPORTANT</h3>
+        </div>
+        <div class="col-5 border-end ">
+            <h4 class="">Quadrant 1</h4>
+                <table class="table">
+                    <thead class="fw-bold">
+                        <tr>
+                            <td>Task Name</td>
+                            <td>Edit</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in quadrants.FirstOrDefault(q => q.Key == 1))
+                        {
+                            <tr>
+                                <td>@task.TaskName</td>
+                                <td>
+                                    <a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                                </td>
+                                <td> <a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+        <div class="col-5">
+            <h4 class="">Quadrant 2</h4>
+            <table class="table">
+                <thead class="fw-bold">
+                    <tr>
+                        <td>Task Name</td>
+                        <td>Edit</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in quadrants.FirstOrDefault(q => q.Key == 2))
+                    {
+                        <tr>
+                            <td>@task.TaskName</td>
+                            <td>
+                                <a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col-2 border-end  ">
+            <h3 style="writing-mode: vertical-rl; text-orientation: upright;">NOT IMPORTANT</h3>
+        </div>
+        <div class="col-5 border-end ">
+            <h4 class="">Quadrant 3</h4>
+            <table class="table">
+                <thead class="fw-bold">
+                    <tr>
+                        <td>Task Name</td>
+                        <td>Edit</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in quadrants.FirstOrDefault(q => q.Key == 3))
+                    {
+                        <tr>
+                            <td>@task.TaskName</td>
+                            <td>
+                                <a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-5 ">
+            <h4 class="">Quadrant 4</h4>
+            <table class="table">
+                <thead class="fw-bold">
+                    <tr>
+                        <td>Task Name</td>
+                        <td>Edit</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in quadrants.FirstOrDefault(q => q.Key == 4))
+                    {
+                        <tr>
+                            <td>@task.TaskName</td>
+                            <td>
+                                <a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId">Delete</a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--
 <div class="row">
     <div class="col-md-6">
         <div class="row">
@@ -136,3 +273,4 @@
         </div>
     </div>
 </div>
+-->

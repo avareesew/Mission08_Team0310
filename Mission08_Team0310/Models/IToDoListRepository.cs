@@ -3,5 +3,14 @@
     public interface IToDoListRepository
     {
         List<ToDoItem> ToDoItems { get; }
+
+        List<Category> Categories { get; }
+
+        public void AvasSpecialAdd(ToDoItem item);
+
+        public void AvasSpecialDelete(ToDoItem item);
+
+        public void AvasSpecialUpdate(ToDoItem item);
+
     }
 }

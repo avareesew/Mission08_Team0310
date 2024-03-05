@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Mission08_Team0310.Models
 {
@@ -16,9 +17,27 @@ namespace Mission08_Team0310.Models
 
         public List<Category> Categories => _context.Categories.ToList(); // Implement Categories property
 
-        public void SaveChanges()
+        public void AvasSpecialDelete(ToDoItem item)
         {
+            _context.ToDoItems.Remove(item);
             _context.SaveChanges();
         }
+
+        public void AvasSpecialAdd(ToDoItem item)
+        {
+            _context.ToDoItems.Add(item);
+            _context.SaveChanges();
+        }
+
+        public void AvasSpecialUpdate(ToDoItem item)
+        {
+            _context.Update(item);
+            _context.SaveChanges();
+        }
+
+        //public void SaveChanges()
+        //{
+        //    _context.SaveChanges();
+        //}
     }
 }

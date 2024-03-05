@@ -8,12 +8,14 @@ namespace Mission08_Team0310.Controllers
     public class HomeController : Controller
     {
         private readonly IToDoListRepository _repo;
-        private readonly Mission08Context _context;
+        // private readonly Mission08Context _context;
 
-        public HomeController(IToDoListRepository temp, Mission08Context context)
+        public HomeController(IToDoListRepository temp
+            // , //Mission08Context context) 
+            )
         {
             _repo = temp;
-            _context = context;
+           // _context = context;
         }
 
         public IActionResult Index()
@@ -22,29 +24,24 @@ namespace Mission08_Team0310.Controllers
             return View(firstToDoItem);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [HttpPost]
         public IActionResult AddTasks(ToDoItem response)
         {
-            _context.ToDoItems.Add(response);
-            _context.SaveChanges();
+            _repo.AvasSpecialAdd(response);
             return RedirectToAction("Index"); // Redirect to another action, such as Index
         }
 
         [HttpGet]
         public IActionResult AddTasks()
         {
-            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.Categories = _repo.Categories.ToList();
             return View();
         }
 
         public IActionResult Quadrants()
         {
-            var ToDoItems = _context.ToDoItems
+            var ToDoItems = _repo.ToDoItems
                 .Where(x => x.Completed == false)
                 .ToList();
 
@@ -54,26 +51,24 @@ namespace Mission08_Team0310.Controllers
         [HttpGet]
         public IActionResult Edit(int Id)
         {
-            var recordToEdit = _context.ToDoItems
+            var recordToEdit = _repo.ToDoItems
                 .Single(x => x.TaskId == Id);
 
-            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.Categories = _repo.Categories.ToList();
             return View("AddTasks", recordToEdit);
         }
 
         [HttpPost]
         public IActionResult Edit(ToDoItem updatedInfo)
         {
-            _context.Update(updatedInfo);
-            _context.SaveChanges();
-
+            _repo.AvasSpecialUpdate(updatedInfo);
             return RedirectToAction("Quadrants");
         }
 
         [HttpGet]
         public IActionResult Delete(int Id)
         {
-            var recordToDelete = _context.ToDoItems
+            var recordToDelete = _repo.ToDoItems
                 .Single(x => x.TaskId == Id);
 
             return View(recordToDelete);
@@ -82,8 +77,7 @@ namespace Mission08_Team0310.Controllers
         [HttpPost]
         public IActionResult Delete(ToDoItem task)
         {
-            _context.ToDoItems.Remove(task);
-            _context.SaveChanges();
+            _repo.AvasSpecialDelete(task);
 
             return RedirectToAction("Quadrants");
         }
